@@ -1,0 +1,1 @@
+"use client";export default function CheckoutButton({plan}:{plan:string}){async function go(){const r=await fetch('/api/stripe/checkout',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({plan})});const j=await r.json();if(j.url)location.href=j.url;}return <button className="btn" onClick={go}>Choose plan</button>}

@@ -1,0 +1,2 @@
+import {requireUser} from '@/lib/auth';
+export default async function Board(){const {supabase,user}=await requireUser();const {data:b=[]}=await supabase.from('saved_prospects').select('*,athlete:athlete_directory(*)').eq('coach_id',user.id);return <><h1>Recruiting board</h1><div className="grid">{b?.map((x:any)=><div className="card" key={x.id}><h3>{x.athlete?.full_name}</h3><p>{x.stage}</p><p className="muted">{x.notes}</p></div>)}</div></>}
