@@ -1,0 +1,2 @@
+import {requireUser} from '@/lib/auth';
+export default async function Messages(){const {supabase,user}=await requireUser();const {data:m=[]}=await supabase.from('messages').select('*,sender:profiles!messages_sender_id_fkey(full_name),recipient:profiles!messages_recipient_id_fkey(full_name)').or(`sender_id.eq.${user.id},recipient_id.eq.${user.id}`).order('created_at',{ascending:false});return <><h1>Messages</h1>{m?.map((x:any)=><div className="card" key={x.id}><b>{x.sender?.full_name} → {x.recipient?.full_name}</b><p>{x.body}</p></div>)}</>}
