@@ -1,0 +1,1 @@
+export default function Loading(){return <div className="card"><span className="kicker">RecruitAI</span><h2>Loading your workspace…</h2><p className="muted">Fetching the latest profile and recruiting data.</p></div>}
